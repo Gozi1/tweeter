@@ -5,6 +5,7 @@ nav{
   width: 100vw;
   background-color: #4056a1;
   color: #FFFFFF;
+  position: fixed;
 }
 nav>h1{
   display: flex;
