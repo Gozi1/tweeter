@@ -1,0 +1,10 @@
+header{
+  height: 629px;
+  background-image: url("../images/background-texture.png");
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #eb9e34;
+}
