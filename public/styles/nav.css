@@ -1,0 +1,34 @@
+nav{
+  display: flex;
+  justify-content: space-between;
+  height: 120px;
+  width: 100vw;
+  background-color: #4056a1;
+  color: #FFFFFF;
+}
+nav>h1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Bungee', cursive;
+  margin: 0 1.5em;
+}
+div#position-right{
+  margin-right: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.p-tweet{
+  margin:0;
+  font-style: normal;
+  font-size:1.5rem ;
+}
+.p-tweet::before{
+  content: "Write";
+  font-weight: 600;
+}
+i{
+  color:#FF0000
+}
