@@ -11,11 +11,9 @@ $(document).ready(function() {
 const renderTweets = function(tweets) {
     tweets.forEach(tweet => {
       let $tweet = createTweetElement(tweet);
-      console.log($tweet);
-      $('#tweets-container').append($tweet);
+      $('#tweets-container').prepend($tweet);
     });
 }
-
 const createTweetElement = function(tweetData) {
   let  $tweet = $(`
   <article class = "tweet">
@@ -39,6 +37,8 @@ const createTweetElement = function(tweetData) {
   return $tweet
 }
 
+
+
 const loadtweets = function() {
   $.ajax({
     url: "http://localhost:8080/tweets",
@@ -46,12 +46,14 @@ const loadtweets = function() {
     dataType: 'json', // added data type
     success: function(res) {
         renderTweets(res);
-        // return res;
+        
     }
 });
 }
-// const data = [loadtweets()];
-// renderTweets(data);
+
 
  loadtweets();
+
+
+ 
 });
