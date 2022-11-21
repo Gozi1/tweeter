@@ -26,3 +26,16 @@
   color: #545149;
   font-weight: 600;
  }
+ 
+ .error>i{
+  margin:0px 10px;
+ }
+ .error{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width:100%;
+  color: red;
+  border: 2px solid red;
+ }

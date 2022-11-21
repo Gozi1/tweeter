@@ -1,7 +1,8 @@
 //Ajax form submit 
 
 $(document).ready(function() {
-  
+  //hides the error div
+  $('.error').hide();
   const createTweetElement = function(tweetData) {
     let  $tweet = $(`
     <article class = "tweet">
@@ -57,8 +58,14 @@ $(document).ready(function() {
     const actionUrl = $(this).attr('action');
     const validate = validator(form)
     if(validate){
-      alert(validate);
+      $('.error>p').text(validate);
+      $('.error').slideDown( "slow" );
+      
+      // alert(validate);
       return false
+    }
+    else{
+      $('.error').hide();
     }
     $.ajax({
         type: "POST",
