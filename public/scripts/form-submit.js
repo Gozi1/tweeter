@@ -59,7 +59,7 @@ $(document).ready(function() {
     const validate = validator(form)
     if(validate){
       $('.error>p').text(validate);
-      $('.error').slideDown( "slow" );
+      $('.error').slideDown( 300 );
       
       // alert(validate);
       return false
