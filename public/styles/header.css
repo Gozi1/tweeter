@@ -1,4 +1,4 @@
-body>header{
+#main>header{
   height: 629px;
   background-image: url("../images/background-texture.png");
   width: 100%;
@@ -7,4 +7,13 @@ body>header{
   align-items: center;
   flex-direction: column;
   background-color: #eb9e34;
+}
+@media only screen and (min-width: 1024px) {
+ #main>header{
+  margin-top: 10rem;
+  margin-left: 3rem;
+  width: 35%;
+ 
+ 
+ }
 }

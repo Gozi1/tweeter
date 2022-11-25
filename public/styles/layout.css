@@ -27,8 +27,22 @@ body {
  *{
   font-family: 'Source Sans Pro', sans-serif;
  }
- main{
+main{
   width: 90%;
   margin: 0 auto;
   background-color: #f4f1ec;
+ }
+
+ @media only screen and (min-width: 1024px) {
+  main{
+    margin-top: 10rem;
+    width: 45%;
+   
+  }
+  #main{
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    flex-direction: row;
+  }
  }

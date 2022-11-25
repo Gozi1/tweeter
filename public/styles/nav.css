@@ -3,7 +3,8 @@ nav{
   justify-content: space-between;
   height: 120px;
   width: 100vw;
-  background-color: #4056a1;
+  background-color: #eb9e34;
+  background-image: url("../images/background-texture.png");
   color: #FFFFFF;
   position: fixed;
 }
@@ -30,6 +31,19 @@ div#position-right{
   content: "Write";
   font-weight: 600;
 }
-i{
-  color:#FF0000
+nav i{
+  color:#FF0000;
+  animation:hovering 2s infinite linear;
+}
+@keyframes hovering {
+  0% {transform: translateY(0px);}
+  50% {transform: translateY(10px);}
+  100% {transform: translateY(0px);}
+}
+
+@media only screen and (min-width: 1024px) {
+  nav{
+    background-color: #4056a1;
+    background-image: none;
+  }
 }
