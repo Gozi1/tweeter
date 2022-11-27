@@ -1,8 +1,11 @@
 //Ajax form submit 
 
 $(document).ready(function() {
-  //hides the error div
+  
+  //hides the error div at the start of code
   $('.error').hide();
+
+  //function that creates a tweet with inserted tweet data
   const createTweetElement = function(tweetData) {
     let  $tweet = $(`
     <article class = "tweet">
@@ -13,7 +16,7 @@ $(document).ready(function() {
               </div>
               <h4>${tweetData.user.handle}</h4>
             </header>
-            <h3>${tweetData.content.text}</h3>
+            <p>${tweetData.content.text}</p>
             <footer>
               <h6>${timeago.format(tweetData.created_at)}</h6>
               <ul>
@@ -25,48 +28,54 @@ $(document).ready(function() {
           </article>`);
     return $tweet
   }
-  const renderTweets = function(tweets) {
-    tweets.forEach(tweet => {
-      let $tweet = createTweetElement(tweet);
-      $('#tweets-container').prepend($tweet);
-    });
-}
+
+  //loads the last tweet data
   const loadlasttweet = function() {
     $.ajax({
       url: "http://localhost:8080/tweets",
       type: 'GET',
       dataType: 'json', // added data type
       success: function(res) {
-          pop =res.pop()
-          renderTweets([pop]);
-          console.log(pop);
-          
+        // if ajax request is successful then prepend the posted tweet
+          const tweetdata = res.pop();
+          const $tweet = createTweetElement(tweetdata);
+          $('#tweets-container').prepend($tweet);
       }
   });
   }
+
+  /** checks to see if data fits the conditions for tweets 
+  returns the error is not meet else return null **/
   const validator = (data) => {
-    truedata = data.split("=")[1];
+    const truedata = data.split("=")[1];
     if(!truedata ||truedata === " ")return "tweet cannot be empty";
     else if(truedata.length >140)return "tweet is above maximum length" ;
     return null;
   }
+
+  //sumbits posted tweets
   $( "#tweet-form" ).submit(function( event ) {
+
     event.preventDefault();
     
     // serializes the form's elements.
     const form = $(this).serialize();
     const actionUrl = $(this).attr('action');
     const validate = validator(form)
+    /** if tweet does not meet the conditions 
+    then displays the error and exits sumbit**/ 
     if(validate){
       $('.error>p').text(validate);
       $('.error').slideDown( 300 );
       
-      // alert(validate);
+
       return false
     }
     else{
-      $('.error').hide();
+      //hides error div 
+      $('.error').slideUp( 300 );
     }
+    //ajax post request
     $.ajax({
         type: "POST",
         url: actionUrl,
@@ -74,7 +83,6 @@ $(document).ready(function() {
         success: function(data)
         {
           loadlasttweet();
-          // show response from the php script.
         }
     });
   });

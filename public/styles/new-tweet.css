@@ -4,9 +4,12 @@
   font-family: 'Bungee', cursive;
   border: none;
  }
+ #tweet-form>div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+ }
  .counter{
-  position: relative;
-  float: right;
   font-family: 'Bungee', cursive;
  }
  .over-counter{

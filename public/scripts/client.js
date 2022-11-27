@@ -1,19 +1,16 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
-
 $(document).ready(function() {
-   
-    
 
+/** function that goes through an array of tweet data
+ the renders them onto the #tweets-container
+ */
 const renderTweets = function(tweets) {
     tweets.forEach(tweet => {
       let $tweet = createTweetElement(tweet);
       $('#tweets-container').prepend($tweet);
     });
 }
+
+//function that creates a tweet with inserted tweet data
 const createTweetElement = function(tweetData) {
   let  $tweet = $(`
   <article class = "tweet">
@@ -24,7 +21,7 @@ const createTweetElement = function(tweetData) {
             </div>
             <h4>${tweetData.user.handle}</h4>
           </header>
-          <h3>${tweetData.content.text}</h3>
+          <p>${tweetData.content.text}</p>
           <footer>
             <h6>${timeago.format(tweetData.created_at)}</h6>
             <ul>
@@ -37,8 +34,7 @@ const createTweetElement = function(tweetData) {
   return $tweet
 }
 
-
-
+//loads all tweet data 
 const loadtweets = function() {
   $.ajax({
     url: "http://localhost:8080/tweets",
@@ -51,9 +47,6 @@ const loadtweets = function() {
 });
 }
 
-
- loadtweets();
-
-
- 
+// calling loadtweets on document ready
+ loadtweets(); 
 });

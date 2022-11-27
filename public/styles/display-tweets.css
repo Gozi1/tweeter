@@ -29,8 +29,12 @@ article.tweet >header div>img{
   height: auto;
   margin-right:1rem
 }
-article.tweet >h3{
+article.tweet >p{
   margin-left: 40px;
+  font-weight: bold;
+  font-size: 2rem;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 article.tweet >footer{
   display: flex;
