@@ -73,6 +73,9 @@ $(document).ready(function() {
     $('.error').slideUp(300);
     //clears text-area
     $("#tweet-text").val('');
+    //resets counter
+    const counter = $('#tweet-text').closest('form').children('div').children('output');
+    counter.val(140);
 
     //ajax post request
     $.ajax({
