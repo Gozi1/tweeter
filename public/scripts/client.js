@@ -1,17 +1,17 @@
 $(document).ready(function() {
 
-/** function that goes through an array of tweet data
+  /** function that goes through an array of tweet data
  the renders them onto the #tweets-container
  */
-const renderTweets = function(tweets) {
+  const renderTweets = function(tweets) {
     tweets.forEach(tweet => {
       let $tweet = createTweetElement(tweet);
       $('#tweets-container').prepend($tweet);
     });
-}
+  };
 
-const createTweetElement = function(tweetData) {
-  let  $tweet = $(`
+  const createTweetElement = function(tweetData) {
+    let  $tweet = $(`
   <article class = "tweet">
           <header >
             <div>
@@ -30,20 +30,20 @@ const createTweetElement = function(tweetData) {
             </ul>
           </footer>
         </article>`);
-  return $tweet
-}
+    return $tweet;
+  };
 
-const loadtweets = function() {
-  $.ajax({
-    url: "http://localhost:8080/tweets",
-    type: 'GET',
-    dataType: 'json', // added data type
-    success: function(res) {
+  const loadtweets = function() {
+    $.ajax({
+      url: "http://localhost:8080/tweets",
+      type: 'GET',
+      dataType: 'json', // added data type
+      success: function(res) {
         renderTweets(res);
         
-    }
-});
-}
+      }
+    });
+  };
 
- loadtweets(); 
+  loadtweets();
 });

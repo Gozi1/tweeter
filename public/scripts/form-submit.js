@@ -1,4 +1,4 @@
-//Ajax form submit 
+//Ajax form submit
 
 $(document).ready(function() {
   
@@ -25,8 +25,8 @@ $(document).ready(function() {
               </ul>
             </footer>
           </article>`);
-    return $tweet
-  }
+    return $tweet;
+  };
 
   const loadlasttweet = function() {
     $.ajax({
@@ -35,55 +35,54 @@ $(document).ready(function() {
       dataType: 'json', // added data type
       success: function(res) {
         // if ajax request is successful then prepend the posted tweet
-          const tweetdata = res.pop();
-          const $tweet = createTweetElement(tweetdata);
-          $('#tweets-container').prepend($tweet);
+        const tweetdata = res.pop();
+        const $tweet = createTweetElement(tweetdata);
+        $('#tweets-container').prepend($tweet);
       }
-  });
-  }
+    });
+  };
 
-  /** checks to see if data fits the conditions for tweets 
+  /** checks to see if data fits the conditions for tweets
   returns the error is not meet else return null **/
   const validator = (data) => {
     const truedata = data.split("=")[1];
-    if(!truedata ||truedata === " ")return "tweet cannot be empty";
-    else if(truedata.length >140)return "tweet is above maximum length" ;
+    if (!truedata || truedata === " ") return "tweet cannot be empty";
+    else if (truedata.length > 140) return "tweet is above maximum length";
     return null;
-  }
+  };
 
   //sumbits posted tweets
-  $( "#tweet-form" ).submit(function( event ) {
+  $("#tweet-form").submit(function(event) {
 
     event.preventDefault();
     
     // serializes the form's elements.
     const form = $(this).serialize();
     const actionUrl = $(this).attr('action');
-    const validate = validator(form)
+    const validate = validator(form);
 
-    /** if tweet does not meet the conditions 
-    then displays the error and exits sumbit**/ 
-    if(validate){
+    /** if tweet does not meet the conditions
+    then displays the error and exits sumbit**/
+    if (validate) {
       $('.error>p').text(validate);
-      $('.error').slideDown( 300 );
-      return false
+      $('.error').slideDown(300);
+      return false;
     }
 
-    //hides error div 
-    $('.error').slideUp( 300 );
+    //hides error div
+    $('.error').slideUp(300);
     //clears text-area
     $("#tweet-text").val('');
 
     //ajax post request
     $.ajax({
-        type: "POST",
-        url: actionUrl,
-        data: form, 
-        success: function(data)
-        {
-          loadlasttweet();
-        }
+      type: "POST",
+      url: actionUrl,
+      data: form,
+      success: function(data) {
+        loadlasttweet();
+      }
     });
   });
 
-})
+});
