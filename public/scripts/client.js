@@ -10,7 +10,6 @@ const renderTweets = function(tweets) {
     });
 }
 
-//function that creates a tweet with inserted tweet data
 const createTweetElement = function(tweetData) {
   let  $tweet = $(`
   <article class = "tweet">
@@ -34,7 +33,6 @@ const createTweetElement = function(tweetData) {
   return $tweet
 }
 
-//loads all tweet data 
 const loadtweets = function() {
   $.ajax({
     url: "http://localhost:8080/tweets",
@@ -47,6 +45,5 @@ const loadtweets = function() {
 });
 }
 
-// calling loadtweets on document ready
  loadtweets(); 
 });

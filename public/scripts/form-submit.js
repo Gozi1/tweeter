@@ -5,7 +5,6 @@ $(document).ready(function() {
   //hides the error div at the start of code
   $('.error').hide();
 
-  //function that creates a tweet with inserted tweet data
   const createTweetElement = function(tweetData) {
     let  $tweet = $(`
     <article class = "tweet">
@@ -29,7 +28,6 @@ $(document).ready(function() {
     return $tweet
   }
 
-  //loads the last tweet data
   const loadlasttweet = function() {
     $.ajax({
       url: "http://localhost:8080/tweets",
@@ -62,19 +60,20 @@ $(document).ready(function() {
     const form = $(this).serialize();
     const actionUrl = $(this).attr('action');
     const validate = validator(form)
+
     /** if tweet does not meet the conditions 
     then displays the error and exits sumbit**/ 
     if(validate){
       $('.error>p').text(validate);
       $('.error').slideDown( 300 );
-      
-
       return false
     }
-    else{
-      //hides error div 
-      $('.error').slideUp( 300 );
-    }
+
+    //hides error div 
+    $('.error').slideUp( 300 );
+    //clears text-area
+    $("#tweet-text").val('');
+
     //ajax post request
     $.ajax({
         type: "POST",
